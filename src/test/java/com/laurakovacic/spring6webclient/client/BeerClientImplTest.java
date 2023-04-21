@@ -45,7 +45,17 @@ class BeerClientImplTest {
 
     @Test
     void listBeersJsonNode() {
-        client.listBeersMap().subscribe(response -> {
+        client.listBeersJsonNode().subscribe(response -> {
+            System.out.println(response);
+            atomicBoolean.set(true);
+        });
+
+        await().untilTrue(atomicBoolean);
+    }
+
+    @Test
+    void listBeersBeersDto() {
+        client.listBeerDto().subscribe(response -> {
             System.out.println(response);
             atomicBoolean.set(true);
         });
